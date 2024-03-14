@@ -23,25 +23,25 @@ export const fetchArticles = async (dispatch: any) => {
   }
 };
 
-export const fetchArticlesID = async (dispatch: any, id: string) => {
-  const token = localStorage.getItem("authToken") ?? "";
+export const fetchArticleDetailsById = async (dispatch: any, id: number) => {
+  const authToken = localStorage.getItem("authToken") ?? "";
 
   try {
-    dispatch({ type: "FETCH_ARTICLES_ID_REQUEST" });
+    dispatch({ type: "FETCH_ARTICLE_DETAILS_REQUEST" });
     const response = await fetch(`${API_ENDPOINT}/articles/${id}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${authToken}`,
       },
     });
     const data = await response.json();
-    dispatch({ type: "FETCH_ARTICLES_ID_SUCCESS", payload: data });
+    dispatch({ type: "FETCH_ARTICLE_DETAILS_SUCCESS", payload: data });
   } catch (error) {
-    console.log("Error fetching articles:", error);
+    console.log("Error fetching article details:", error);
     dispatch({
-      type: "FETCH_ARTICLES_ID_FAILURE",
-      payload: "Unable to load articles",
+      type: "FETCH_ARTICLE_DETAILS_FAILURE",
+      payload: "Unable to load article details",
     });
   }
 };
