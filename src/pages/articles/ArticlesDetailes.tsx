@@ -1,8 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import React, { useEffect, useState, Fragment } from "react";
+import React, { useState, Fragment } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { useArticlesDispatch, useArticlesState } from "../../context/articles/context";
-import { fetchArticles } from "../../context/articles/actions";
+import {  useArticlesState } from "../../context/articles/context";
 import { Articles } from "../../context/articles/type";
 import { API_ENDPOINT } from "../../config/constants";
 import { Teams } from "../../context/articles/type";
@@ -12,15 +11,10 @@ import { Transition } from '@headlessui/react';
 const ArticlesDetailes: React.FC = () => {
   const state = useArticlesState();
   const { articles, isLoading, isError, errorMessage } = state;
-  const dispatchArticles = useArticlesDispatch();
   const [selectedArticle, setSelectedArticle] = useState<Articles | null>(null);
   const [isOpen, setOpen] = useState(false);
   const navigate = useNavigate();
   useParams<{ id: string; }>();
-
-  useEffect(() => {
-    fetchArticles(dispatchArticles);
-  }, [dispatchArticles]);
 
   const fetchArticleDetails = async (id: number) => {
     const authToken = localStorage.getItem("authToken");
