@@ -3,6 +3,7 @@ import { fetchMatches } from '../../context/matches/actions';
 import { useMatchesDispatch, useMatchesState } from '../../context/matches/context';
 import { Matches } from '../../context/matches/type';
 import { Link } from "react-router-dom";
+import Logo from "../../assets/images/live_2009767.png";
 
 const MatchListItems: React.FC<{ match: Matches; onClick: () => void }> = ({
   onClick,
@@ -39,8 +40,10 @@ const MatchListItems: React.FC<{ match: Matches; onClick: () => void }> = ({
       <div className="container mx-auto px-2 lg:px-2">
         <div className="pr-4 flex justify-between items-center">
           <div className="flex items-center">
-            <img src="src\assets\images\live_2009767.png" alt="Live Icon" className="w-10 h-10" />
-            <h1 className='font-bold text-4xl p-4' style={{ fontFamily: 'Roboto, sans-serif' }}>Matches</h1>
+          <div className="flex-shrink-0">
+                  <img className="h-12" src={Logo} alt="SportZ-Center" />
+                </div>            
+                <h1 className='font-bold text-4xl p-4' style={{ fontFamily: 'Roboto, sans-serif' }}>Matches</h1>
           </div>
           <button
             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-opacity-50"

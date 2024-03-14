@@ -8,10 +8,8 @@ const ArticleListItem: React.FC<{ article: Articles; onClick: () => void }> = ({
 }) => {
   return (
     <div
-      className="relative overflow-hidden rounded-xl transform transition-all hover:-translate-y-2 duration-300 hover:shadow-2xl dark:bg-gray-900"
-      onClick={onClick}
+      className="relative overflow-hidden rounded-xl  duration-300 shadow-2xl dark:bg-gray-900"
     >
-      <Link key={article.id} to={`/articles/${article.id}`} className="block">
         <div className="image-container">
           <img
             className="w-full h-48 object-cover rounded-lg"
@@ -43,11 +41,16 @@ const ArticleListItem: React.FC<{ article: Articles; onClick: () => void }> = ({
               {article.summary}
             </p>
           </div>
-          <p className="absolute bottom-0 left-0 w-full text-center text-black px-4 py-2 rounded-md dark:text-zinc-50">
+          <Link key={article.id} to={`/articles/${article.id}`} className="block">
+
+          <div onClick={onClick}>
+          <p className="absolute bottom-0 left-0 w-full text-center rounded-md dark:text-zinc-50 text-white px-4 py-2 rounded-md bg-blue-600 hover:bg-blue-700">
             Read More...
           </p>
+          </div>
+          </Link>
+
         </div>
-      </Link>
     </div>
   );
 };
