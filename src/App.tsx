@@ -12,11 +12,10 @@ function App() {
     <>
       <div className={`h-screen w-full ${theme === "dark" ? "dark" : ""}`}>
         <ArticlesProvider>
-        <MatchesProvider>
-          <RouterProvider router={router} />
+          <MatchesProvider>
+            <RouterProvider router={router} />
           </MatchesProvider>
         </ArticlesProvider>
-
       </div>
     </>
   );

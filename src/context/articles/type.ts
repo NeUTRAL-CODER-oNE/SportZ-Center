@@ -30,7 +30,6 @@ export enum ArticlesAvailableAction {
   FETCH_ARTICLES_FAILURE = "FETCH_ARTICLES_FAILURE",
 
   REORDER_ARTICLES = "REORDER_ARTICLES",
-
 }
 
 export type ArticlesActions =

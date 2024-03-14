@@ -1,15 +1,11 @@
 /* eslint-disable no-case-declarations */
 import { Reducer } from "react";
-import {
-  MatchesState,
-  MatchesActions,
-  MatchesAvailableAction,
-} from "./type";
+import { MatchesState, MatchesActions, MatchesAvailableAction } from "./type";
 export const initialState: MatchesState = {
-    matches: [],
-    isLoading: false,
-    isError: false,
-    errorMessage: "",
+  matches: [],
+  isLoading: false,
+  isError: false,
+  errorMessage: "",
 };
 
 export const matchesReducer: Reducer<MatchesState, MatchesActions> = (
