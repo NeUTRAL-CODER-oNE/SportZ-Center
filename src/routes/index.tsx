@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { createBrowserRouter, Navigate } from "react-router-dom";
 import Home from "../pages/Home";
-import ProtectedRoute from "./ProtectedRoute";
 import MatchDetails from "../pages/matches/MatchesDetailes";
 import ArticlesDetails from "../pages/articles/ArticlesDetailes";
 
@@ -11,9 +10,7 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: (
-      <ProtectedRoute>
         <Home />
-      </ProtectedRoute>
     ),
     children: [
       { index: true, element: <></> },
