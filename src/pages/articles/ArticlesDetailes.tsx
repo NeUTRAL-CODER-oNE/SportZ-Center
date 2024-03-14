@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect, Fragment, useContext } from "react";
 import { Articles, Teams } from "../../context/articles/type";
 import { Dialog, Transition } from "@headlessui/react";

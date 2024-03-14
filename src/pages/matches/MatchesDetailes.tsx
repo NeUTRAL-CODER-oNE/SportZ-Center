@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect, Fragment, useContext } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { API_ENDPOINT } from "../../config/constants";
