@@ -38,10 +38,10 @@ const ArticleListItem: React.FC = () => {
               <div className="flex flex-col justify-between p-4 leading-normal h-full">
                 <div>
                   <div className="flex justify-between items-center mb-2">
-                    <p className="text-l tracking-tight text-gray-900 dark:text-zinc-50">
+                    <p className=" font-mono font-normal text-gray-900 dark:text-zinc-50">
                       {article.sport.name}
                     </p>
-                    <p className="font-mono text-xs font-normal opacity-75 text-black dark:text-zinc-50">
+                    <p className="font-mono font-normal opacity-75 text-black dark:text-zinc-50">
                       {new Date(article.date).toLocaleDateString("en-US", {
                         month: "long",
                         day: "numeric",
@@ -56,14 +56,11 @@ const ArticleListItem: React.FC = () => {
                     {article.summary}
                   </p>
                 </div>
-                <div
-                  className="summary-read-more-wrapper"
-                  style={{ paddingTop: "2em" }}
-                >
+                <div style={{ paddingTop: "2em" }}>
                   <Link
                     key={article.id}
                     to={`/article/${article.id}`}
-                    className="absolute bottom-0 left-0 w-full text-center rounded-md dark:text-zinc-50 text-white px-4 py-2 rounded-md bg-blue-600 hover:bg-blue-700"
+                    className="absolute bottom-0 left-0 w-full text-center rounded-md dark:text-zinc-50 text-white px-4 py-2 rounded-md bg-gray-700 hover:bg-gray-800"
                   >
                     {" "}
                     Read More...

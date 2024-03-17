@@ -11,5 +11,5 @@ export default function ProtectedRoute({
   if (authenticated) {
     return <>{children}</>;
   }
-  return <Navigate to="/signin" replace state={{ referrer: pathname }} />;
+  return <Navigate to="/" replace state={{ referrer: pathname }} />;
 }

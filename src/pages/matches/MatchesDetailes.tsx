@@ -3,19 +3,22 @@ import React, { useState, useEffect, Fragment, useContext } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { API_ENDPOINT } from "../../config/constants";
 import { ThemeContext } from "../../context/theme";
-import { Matches } from "../../context/matches/type";
+import { Matches, MatchesState } from "../../context/matches/type";
 import { useParams, useNavigate } from "react-router-dom";
+import { useMatchesState } from "../../context/matches/context";
 
 const MatchDetails: React.FC = () => {
   const [selectedMatch, setSelectedMatch] = useState<Matches | null>(null);
-  const [isLoading, setLoading] = useState(false);
+  const state: MatchesState = useMatchesState();
+  const { isLoading, isError, errorMessage } = state;
+
   const { theme } = useContext(ThemeContext);
   const { id } = useParams();
   const navigate = useNavigate();
   const [isOpen, setOpen] = useState(false);
+  const [scoreLoading, setScoreLoading] = useState(false);
 
   const fetchMatchDetailsById = async () => {
-    setLoading(true);
     const authToken = localStorage.getItem("authToken") || "";
 
     try {
@@ -30,8 +33,6 @@ const MatchDetails: React.FC = () => {
       setSelectedMatch(data);
     } catch (error) {
       console.error("Error fetching match details:", error);
-    } finally {
-      setLoading(false);
     }
   };
 
@@ -43,6 +44,20 @@ const MatchDetails: React.FC = () => {
     setOpen(false);
     navigate("../..");
   };
+
+  const handleRefresh = async () => {
+    setScoreLoading(true);
+    await fetchMatchDetailsById(); // Refresh match details
+    setScoreLoading(false);
+  };
+
+  if (isLoading) {
+    return <span>Loading...</span>;
+  }
+
+  if (isError) {
+    return <span>{errorMessage}</span>;
+  }
 
   return (
     <>
@@ -87,18 +102,32 @@ const MatchDetails: React.FC = () => {
                         >
                           {selectedMatch && selectedMatch.score && (
                             <>
-                              {Object.entries(selectedMatch.score).map(
-                                ([teamName, score], index) => (
-                                  <div key={index}>
-                                    <p>
-                                      {teamName}: {String(score)}
-                                    </p>
-                                  </div>
-                                ),
+                              {scoreLoading ? (
+                                <p>Loading score...</p>
+                              ) : (
+                                Object.entries(selectedMatch.score).map(
+                                  ([teamName, score], index) => (
+                                    <React.Fragment key={index}>
+                                      {index > 0 && <span> vs </span>}
+                                      <span
+                                        className={`font-bold ${index === 0 ? "text-blue-500" : "text-red-500"}`}
+                                      >
+                                        {teamName}
+                                      </span>{" "}
+                                      ({String(score)})
+                                    </React.Fragment>
+                                  ),
+                                )
                               )}
                             </>
                           )}
                         </p>
+                        <button
+                          onClick={handleRefresh}
+                          className={`text-gray-600 px-4 py-2 ${theme === "dark" ? "bg-gray-800" : "bg-gray-200 hover:bg-gray-300"} rounded-md`}
+                        >
+                          Refresh
+                        </button>
                       </div>
                       <div className="overflow-y-auto max-h-72">
                         <p className={`text-gray-600 mb-4 text-justify `}>

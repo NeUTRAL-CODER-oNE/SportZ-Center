@@ -1,27 +1,13 @@
 import React from "react";
-import { fetchMatches } from "../../context/matches/actions";
-import {
-  useMatchesDispatch,
-  useMatchesState,
-} from "../../context/matches/context";
-import { Matches } from "../../context/matches/type";
+import { useMatchesState } from "../../context/matches/context";
+import { Matches, MatchesState } from "../../context/matches/type";
 import { Link } from "react-router-dom";
 import Logo from "../../assets/images/live_2009767.png";
 import { MapPinIcon } from "@heroicons/react/20/solid";
 
-// Define Score type
-export type Score = {
-  [teamName: string]: string;
-};
-
 const MatchesListItems: React.FC = () => {
-  const state = useMatchesState();
+  const state: MatchesState = useMatchesState();
   const { matches, isLoading, isError, errorMessage } = state;
-  const matchesDispatch = useMatchesDispatch();
-
-  const handleRefresh = () => {
-    fetchMatches(matchesDispatch);
-  };
 
   if (isLoading) {
     return <span>Loading...</span>;
@@ -49,12 +35,6 @@ const MatchesListItems: React.FC = () => {
               Matches
             </h1>
           </div>
-          <button
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-opacity-50"
-            onClick={handleRefresh}
-          >
-            Refresh
-          </button>
         </div>
       </div>
 
@@ -68,7 +48,7 @@ const MatchesListItems: React.FC = () => {
               <Link key={match.id} to={`/match/${match.id}`} className="block">
                 <div className="flex-shrink-0 bg-white p-3 rounded-md text-black dark:bg-black dark:text-white border dark:border-white ">
                   <div>
-                    <h2 className="text-base font-bold my-1">
+                    <h2 className="font-mono text-base font-bold my-1">
                       {match.teams.map((team, index) => (
                         <React.Fragment key={team.id}>
                           {index > 0 && (
@@ -110,7 +90,7 @@ const MatchesListItems: React.FC = () => {
             >
               <Link key={match.id} to={`/match/${match.id}`} className="block">
                 <div>
-                  <h2 className="text-base font-bold my-1">
+                  <h2 className="font-mono text-base font-bold my-1">
                     {match.teams.map((team, index) => (
                       <React.Fragment key={team.id}>
                         {index > 0 && (

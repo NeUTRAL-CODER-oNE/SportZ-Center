@@ -7,15 +7,8 @@ import Logo from "../../assets/images/SportZ-Center.png";
 // import { Link, useLocation } from "react-router-dom";
 import { ThemeContext } from "../../context/theme";
 import { MoonIcon, SunIcon } from "@heroicons/react/20/solid";
-
-const userNavigation = [
-  { name: "Login", href: "/login" },
-
-  { name: "Sign out", href: "/logout" },
-];
-
-const classNames = (...classes: string[]): string =>
-  classes.filter(Boolean).join(" ");
+import { Link } from "react-router-dom";
+const authenticated = !!localStorage.getItem("authToken");
 
 const Appbar = () => {
   // const { pathname } = useLocation();
@@ -146,25 +139,22 @@ const Appbar = () => {
     py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none
   `}
                       >
-                        {userNavigation.map((item) => (
-                          <Menu.Item key={item.name}>
-                            {({ active }) => (
-                              <a
-                                href={item.href}
-                                className={classNames(
-                                  "block px-4 py-2 text-sm",
-                                  active ? "bg-gray-100" : "",
-                                  enabled
-                                    ? "dark:hover:bg-gray-700 dark:hover:text-white"
-                                    : "hover:bg-gray-100 hover:text-black", // Adjust light mode hover styles
-                                  "transition-all duration-300", // Add transition for smooth color changes
-                                )}
-                              >
-                                {item.name}
-                              </a>
-                            )}
-                          </Menu.Item>
-                        ))}
+                        {authenticated ? (
+                          <>
+                            <div className="block px-4 py-2 text-sm font-mono dark:hover:bg-gray-700 dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white transition-all duration-300">
+                              <Link to={`/logout`}>Sign-Out</Link>
+                            </div>
+                          </>
+                        ) : (
+                          <>
+                            <div className="block px-4 py-2 text-sm font-mono dark:hover:bg-gray-700 dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white transition-all duration-300">
+                              <Link to={`/user/sign-in`}>Sign-In</Link>
+                            </div>
+                            <div className="block px-4 py-2 text-sm font-mono dark:hover:bg-gray-700 dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white transition-all duration-300">
+                              <Link to={`/sign-up`}>Sign-Up</Link>
+                            </div>
+                          </>
+                        )}
                       </Menu.Items>
                     </Transition>
                   </Menu>

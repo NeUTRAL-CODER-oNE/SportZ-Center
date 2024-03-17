@@ -63,14 +63,14 @@ const ArticlesDetails: React.FC = () => {
               leaveTo="opacity-0 scale-95"
             >
               <Dialog.Panel
-                className={`mx-auto mt-5 mb-5 p-10 w-full max-w-3xl transform overflow-hidden rounded-2xl align-middle shadow-xl transition-all ${theme === "dark" ? "bg-gray-900" : "bg-white"}`}
+                className={` mt-5 mb-5 p-10 pb-5 pt-5 w-full max-w-4xl rounded-2xl shadow-xl transform overflow-hidden align-middle transition-all ${theme === "dark" ? "bg-gray-900" : "bg-white"}`}
               >
                 <Dialog.Title
                   className={`text-lg font-medium ${theme === "dark" ? "text-white" : "text-gray-900"}`}
                 >
                   Article Details
                 </Dialog.Title>
-                <div className="mt-4">
+                <div className="mt-2">
                   {isLoading && <p>Loading...</p>}
                   {selectedArticle && (
                     <div>
@@ -79,9 +79,9 @@ const ArticlesDetails: React.FC = () => {
                         src={selectedArticle.thumbnail}
                         alt={selectedArticle.title}
                       />
-                      <div className="flex justify-between p-4 items-center mb-2">
+                      <div className="flex justify-between p-3 items-center mb-2">
                         <p
-                          className={`text-l tracking-tight ${theme === "dark" ? "text-zinc-50" : "text-gray-900"}`}
+                          className={`font-mono font-normal opacity-75 ${theme === "dark" ? "text-zinc-50" : "text-gray-900"}`}
                         >
                           {selectedArticle.teams?.map(
                             (team: Teams, index: number) =>
@@ -89,7 +89,7 @@ const ArticlesDetails: React.FC = () => {
                           )}
                         </p>
                         <p
-                          className={`font-mono text-xs font-normal opacity-75 ${theme === "dark" ? "text-white" : "text-gray-900"}`}
+                          className={`font-mono font-normal opacity-75 ${theme === "dark" ? "text-white" : "text-gray-900"}`}
                         >
                           {new Date(selectedArticle.date).toLocaleDateString(
                             "en-US",
@@ -102,25 +102,27 @@ const ArticlesDetails: React.FC = () => {
                         </p>
                       </div>
                       <h2
-                        className={`text-2xl font-bold mb-4 text-center ${theme === "dark" ? "text-white" : "text-gray-900"}`}
+                        className={`text-1xl font-bold mb-4 text-center ${theme === "dark" ? "text-white" : "text-gray-900"}`}
                       >
                         {selectedArticle.title}
                       </h2>
                       <div className="overflow-y-auto max-h-72">
                         <p className={`text-gray-600 mb-4 text-justify `}>
-                          <b>Summary:</b> {selectedArticle.summary}
-                        </p>
-                        <p className={`text-gray-600 mb-4 text-justify `}>
                           <b>Content:</b> {selectedArticle.content}
                         </p>
                       </div>
-                      <div className="flex justify-center">
-                        <button
-                          onClick={closeModal}
-                          className={` text-gray-600 px-4 py-2 ${theme === "dark" ? "bg-gray-800" : "bg-gray-200 hover:bg-gray-400"} rounded-md`}
-                        >
-                          Close
-                        </button>
+                      <div
+                        className="read-more-wrapper"
+                        style={{ paddingTop: "1em" }}
+                      >
+                        <div className="flex justify-center">
+                          <button
+                            onClick={closeModal}
+                            className={` text-gray-600 px-4 py-2 ${theme === "dark" ? "bg-gray-800" : "bg-gray-200 hover:bg-gray-400"} rounded-md`}
+                          >
+                            Close
+                          </button>
+                        </div>
                       </div>
                     </div>
                   )}
