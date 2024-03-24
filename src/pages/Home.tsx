@@ -5,12 +5,14 @@ import Matches from "./matches";
 
 const Home: React.FC = () => {
   return (
-    <div className="dark:bg-black">
-      <AccountLayout />
-      <div className="w-full">{<Matches />}</div>
-      <br />
-      <div className="w-full">{<Articles />}</div>
-    </div>
+    <>
+      <div className=" w-full dark:bg-black">
+        {<AccountLayout />}
+        <div className="w-full">{<Matches />}</div>
+        <br />
+        <div className="w-full">{<Articles />}</div>
+      </div>
+    </>
   );
 };
 

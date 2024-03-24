@@ -47,7 +47,7 @@ const MatchDetails: React.FC = () => {
 
   const handleRefresh = async () => {
     setScoreLoading(true);
-    await fetchMatchDetailsById(); // Refresh match details
+    await fetchMatchDetailsById();
     setScoreLoading(false);
   };
 
@@ -64,7 +64,7 @@ const MatchDetails: React.FC = () => {
       <Transition appear show={isOpen} as={Fragment}>
         <Dialog
           as="div"
-          className="fixed inset-0 z-50 overflow-y-3xl"
+          className="fixed inset-0 z-50 overflow-y-3xl flex justify-center"
           onClose={closeModal}
         >
           <div className={`flex items-center justify-center max-h-1xl`}>
@@ -78,7 +78,7 @@ const MatchDetails: React.FC = () => {
               leaveTo="opacity-0 scale-95"
             >
               <Dialog.Panel
-                className={`mx-auto mt-20 mb-5 p-10 w-full max-w-3xl transform overflow-hidden rounded-2xl align-middle shadow-xl transition-all ${theme === "dark" ? "bg-gray-900" : "bg-white"}`}
+                className={`mx-auto m-auto p-10 w-full max-w-3xl transform overflow-hidden rounded-2xl align-middle shadow-xl transition-all ${theme === "dark" ? "bg-gray-900" : "bg-white"}`}
               >
                 <Dialog.Title
                   className={`text-lg font-medium ${theme === "dark" ? "text-white" : "text-gray-900"}`}
@@ -122,22 +122,33 @@ const MatchDetails: React.FC = () => {
                             </>
                           )}
                         </p>
-                        <button
-                          onClick={handleRefresh}
-                          className={`text-gray-600 px-4 py-2 ${theme === "dark" ? "bg-gray-800" : "bg-gray-200 hover:bg-gray-300"} rounded-md`}
-                        >
-                          Refresh
-                        </button>
+                        {selectedMatch.isRunning && (
+                          <button
+                            onClick={handleRefresh}
+                            className={`text-gray-600 px-4 py-2 ${theme === "dark" ? "bg-gray-800" : "bg-gray-200 hover:bg-gray-300"} rounded-md`}
+                          >
+                            Refresh
+                          </button>
+                        )}
                       </div>
-                      <div className="overflow-y-auto max-h-72">
+                      <div className="overflow-y-auto max-h-72 mb-4">
                         <p className={`text-gray-600 mb-4 text-justify `}>
                           <b>Story:</b> {selectedMatch.story}
                         </p>
                       </div>
-                      <div
-                        className="story-read-more-wrapper"
-                        style={{ paddingTop: "3em" }}
-                      >
+                      {!selectedMatch.isRunning && selectedMatch.endsAt && (
+                        <p className={`text-gray-600 mb-4 text-justify `}>
+                          <b>Ends At:</b>{" "}
+                          {new Date(selectedMatch.endsAt).toLocaleString()}
+                        </p>
+                      )}
+                      {selectedMatch.isRunning && selectedMatch.startsAt && (
+                        <p className={`text-gray-600 mb-4 text-justify `}>
+                          <b>Starts At:</b>{" "}
+                          {new Date(selectedMatch.startsAt).toLocaleString()}
+                        </p>
+                      )}
+                      <div className="story-read-more-wrapper pt-2">
                         <div className="flex justify-center">
                           <button
                             onClick={closeModal}

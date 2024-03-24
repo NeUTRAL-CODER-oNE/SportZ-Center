@@ -49,7 +49,7 @@ const ArticlesDetails: React.FC = () => {
       <Transition appear show={isOpen} as={Fragment}>
         <Dialog
           as="div"
-          className="fixed inset-0 z-50 overflow-y-auto"
+          className="fixed inset-0 z-50 overflow-y-auto flex justify-center"
           onClose={closeModal}
         >
           <div className={`flex items-center justify-center max-h-1xl`}>
@@ -63,7 +63,7 @@ const ArticlesDetails: React.FC = () => {
               leaveTo="opacity-0 scale-95"
             >
               <Dialog.Panel
-                className={` mt-5 mb-5 p-10 pb-5 pt-5 w-full max-w-4xl rounded-2xl shadow-xl transform overflow-hidden align-middle transition-all ${theme === "dark" ? "bg-gray-900" : "bg-white"}`}
+                className={`m-10 p-8  w-full max-w-4xl rounded-2xl shadow-xl transform overflow-hidden align-middle transition-all ${theme === "dark" ? "bg-gray-900" : "bg-white"}`}
               >
                 <Dialog.Title
                   className={`text-lg font-medium ${theme === "dark" ? "text-white" : "text-gray-900"}`}
@@ -111,10 +111,7 @@ const ArticlesDetails: React.FC = () => {
                           <b>Content:</b> {selectedArticle.content}
                         </p>
                       </div>
-                      <div
-                        className="read-more-wrapper"
-                        style={{ paddingTop: "1em" }}
-                      >
+                      <div className="read-more-wrapper pt-1">
                         <div className="flex justify-center">
                           <button
                             onClick={closeModal}

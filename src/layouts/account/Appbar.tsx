@@ -1,6 +1,6 @@
 /* eslint-disable no-empty-pattern */
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { useState, useContext, Fragment } from "react";
+import { useState, useContext, Fragment, useEffect } from "react";
 import { Disclosure, Menu, Transition, Switch } from "@headlessui/react";
 import { UserCircleIcon } from "@heroicons/react/24/outline";
 import Logo from "../../assets/images/SportZ-Center.png";
@@ -8,12 +8,11 @@ import Logo from "../../assets/images/SportZ-Center.png";
 import { ThemeContext } from "../../context/theme";
 import { MoonIcon, SunIcon } from "@heroicons/react/20/solid";
 import { Link } from "react-router-dom";
-const authenticated = !!localStorage.getItem("authToken");
 
 const Appbar = () => {
   // const { pathname } = useLocation();
   const { theme, setTheme } = useContext(ThemeContext);
-
+  const authenticated = !!localStorage.getItem("authToken");
   const [enabled, setEnabled] = useState(false);
 
   const toggleTheme = () => {
@@ -26,6 +25,10 @@ const Appbar = () => {
     setTheme(newTheme);
     setEnabled(!enabled);
   };
+
+  useEffect(() => {
+    setEnabled(theme === "dark");
+  }, [theme]);
 
   // const navigation = [
   //   { name: "Projects", href: "/account/projects", current: false },
@@ -84,7 +87,7 @@ const Appbar = () => {
                     <span
                       className={`${
                         enabled ? "translate-x-6" : "translate-x-1"
-                      } inline-block h-4 w-4 transform rounded-full bg-white transition`}
+                      } inline-block h-4 w-4 transform rounded-full bg-white transition duration-300`}
                     >
                       {enabled ? (
                         <MoonIcon className="text-gray-800" />
@@ -93,23 +96,24 @@ const Appbar = () => {
                       )}
                     </span>
                   </Switch>
-
-                  <div className="relative ml-5">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      strokeWidth={1.5}
-                      stroke="currentColor"
-                      className="w-6 h-6"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M12 3c2.755 0 5.455.232 8.083.678.533.09.917.556.917 1.096v1.044a2.25 2.25 0 0 1-.659 1.591l-5.432 5.432a2.25 2.25 0 0 0-.659 1.591v2.927a2.25 2.25 0 0 1-1.244 2.013L9.75 21v-6.568a2.25 2.25 0 0 0-.659-1.591L3.659 7.409A2.25 2.25 0 0 1 3 5.818V4.774c0-.54.384-1.006.917-1.096A48.32 48.32 0 0 1 12 3Z"
-                      />
-                    </svg>
-                  </div>
+                  {authenticated && (
+                    <div className="relative ml-5">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        strokeWidth={1.5}
+                        stroke="currentColor"
+                        className="w-6 h-6"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M12 3c2.755 0 5.455.232 8.083.678.533.09.917.556.917 1.096v1.044a2.25 2.25 0 0 1-.659 1.591l-5.432 5.432a2.25 2.25 0 0 0-.659 1.591v2.927a2.25 2.25 0 0 1-1.244 2.013L9.75 21v-6.568a2.25 2.25 0 0 0-.659-1.591L3.659 7.409A2.25 2.25 0 0 1 3 5.818V4.774c0-.54.384-1.006.917-1.096A48.32 48.32 0 0 1 12 3Z"
+                        />
+                      </svg>
+                    </div>
+                  )}
                   <Menu as="div" className="relative ml-5">
                     <div>
                       <Menu.Button className="rounded-full bg-transprent p-1 text-gray-400 hover:text-blue-600">
@@ -140,19 +144,26 @@ const Appbar = () => {
   `}
                       >
                         {authenticated ? (
-                          <>
-                            <div className="block px-4 py-2 text-sm font-mono dark:hover:bg-gray-700 dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white transition-all duration-300">
-                              <Link to={`/logout`}>Sign-Out</Link>
-                            </div>
-                          </>
+                          <Link
+                            className="block px-4 py-2 text-sm font-mono transition-all duration-300 hover:bg-gray-200 hover:text-black dark:hover:bg-gray-800 dark:hover:text-white"
+                            to="/logout"
+                          >
+                            Sign-Out
+                          </Link>
                         ) : (
                           <>
-                            <div className="block px-4 py-2 text-sm font-mono dark:hover:bg-gray-700 dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white transition-all duration-300">
-                              <Link to={`/user/sign-in`}>Sign-In</Link>
-                            </div>
-                            <div className="block px-4 py-2 text-sm font-mono dark:hover:bg-gray-700 dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white transition-all duration-300">
-                              <Link to={`/sign-up`}>Sign-Up</Link>
-                            </div>
+                            <Link
+                              className="block px-4 py-2 text-sm font-mono transition-all duration-300 hover:bg-gray-200 hover:text-black dark:hover:bg-gray-800 dark:hover:text-white"
+                              to="/user/sign-in"
+                            >
+                              Sign-In
+                            </Link>
+                            <Link
+                              className="block px-4 py-2 text-sm font-mono transition-all duration-300 hover:bg-gray-200 hover:text-black dark:hover:bg-gray-800 dark:hover:text-white"
+                              to="/sign-up"
+                            >
+                              Sign-Up
+                            </Link>
                           </>
                         )}
                       </Menu.Items>

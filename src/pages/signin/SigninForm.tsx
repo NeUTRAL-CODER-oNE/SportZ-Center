@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useForm, SubmitHandler } from "react-hook-form";
 
 import { API_ENDPOINT } from "../../config/constants";
@@ -33,9 +33,8 @@ const SigninForm: React.FC = () => {
         const responseData = await response.json();
 
         localStorage.setItem("authToken", responseData.token);
-        // If successful, save the user info in localStorage
         localStorage.setItem("userData", JSON.stringify(responseData.user));
-        navigate("/");
+        navigate("/user");
       }
     } catch (error: any) {
       console.error("Sign-in failed:", error);
@@ -43,48 +42,69 @@ const SigninForm: React.FC = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <div>
-        <label className="block text-gray-700 font-semibold mb-2 font-mono">
-          Email:
-        </label>
-        <input
-          {...register("email", {
-            required: "Email is required",
-          })}
-          type="email"
-          name="email"
-          id="email"
-          autoComplete="email"
-          placeholder="Enter your email"
-          className={`w-full border font-mono rounded-md py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:border-blue-500 focus:shadow-outline-blue ${errors.email ? "border-red-500" : ""}`}
-        />
-        {errors.email && <p className="text-red-500">{errors.email.message}</p>}
-      </div>
-      <div>
-        <label className="block text-gray-700 font-semibold mb-2 font-mono">
-          Password:
-        </label>
-        <input
-          {...register("password", { required: "Password is required" })}
-          type="password"
-          name="password"
-          id="password"
-          autoComplete="password"
-          placeholder="Enter your password"
-          className={`w-full border font-mono rounded-md py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:border-blue-500 focus:shadow-outline-blue ${errors.password ? "border-red-500" : ""}`}
-        />
-        {errors.password && (
-          <p className="text-red-500">{errors.password.message}</p>
-        )}
-      </div>
-      <button
-        type="submit"
-        className="w-full font-mono bg-gray-700 font-mono hover:bg-gray-800 text-white font-semibold py-2 px-4 rounded-md focus:outline-none focus:shadow-outline-gray mt-4"
-      >
-        Sign In
-      </button>
-    </form>
+    <>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <div>
+          <label className="block text-gray-700 font-semibold mb-2 font-mono">
+            Email:
+          </label>
+          <input
+            {...register("email", {
+              required: "Email is required",
+            })}
+            type="email"
+            name="email"
+            id="email"
+            autoComplete="email"
+            placeholder="Enter your email"
+            className={`w-full border font-mono rounded-md py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:border-blue-500 focus:shadow-outline-blue ${errors.email ? "border-red-500" : ""}`}
+          />
+          {errors.email && (
+            <p className="text-red-500">{errors.email.message}</p>
+          )}
+        </div>
+        <div>
+          <label className="block text-gray-700 font-semibold mb-2 font-mono">
+            Password:
+          </label>
+          <input
+            {...register("password", { required: "Password is required" })}
+            type="password"
+            name="password"
+            id="password"
+            autoComplete="password"
+            placeholder="Enter your password"
+            className={`w-full border font-mono rounded-md py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:border-blue-500 focus:shadow-outline-blue ${errors.password ? "border-red-500" : ""}`}
+          />
+          {errors.password && (
+            <p className="text-red-500">{errors.password.message}</p>
+          )}
+        </div>
+        <button
+          type="submit"
+          className="w-full font-mono bg-gray-700  hover:bg-gray-800 text-white font-semibold py-2 px-4 rounded-md focus:outline-none focus:shadow-outline-gray mt-4"
+        >
+          Sign In
+        </button>
+      </form>
+      <p className="mt-8 font-mono text-black">
+        Need an account?{" "}
+        <Link
+          to="/sign-up"
+          className="text-blue-500 hover:text-blue-700 font-semibold"
+        >
+          Create an account
+        </Link>
+      </p>
+      <p className="mt-5 font-mono">
+        <Link
+          to="/"
+          className="text-blue-500 hover:text-blue-700 font-semibold"
+        >
+          Back to Home
+        </Link>
+      </p>
+    </>
   );
 };
 
