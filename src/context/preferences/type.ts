@@ -16,7 +16,6 @@ export type Preference = {
   };
 };
 
-
 export enum PreferencesAvailableAction {
   FETCH_PREFERENCES_REQUEST = "FETCH_PREFERENCES_REQUEST",
   FETCH_PREFERENCES_SUCCESS = "FETCH_PREFERENCES_SUCCESS",

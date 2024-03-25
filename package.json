@@ -13,62 +13,27 @@
     "@headlessui/react": "^1.7.18",
     "@react-icons/all-files": "^4.1.0",
     "@types/react-router-dom": "^5.3.3",
-<<<<<<< HEAD
+    "prettier": "^3.2.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.51.1",
     "react-icons": "^5.0.1",
     "react-router-dom": "^6.22.2"
-=======
-    "flowbite": "^2.3.0",
-    "prettier": "^3.2.5",
-    "react": "^18.2.0",
-    "react-beautiful-dnd": "^13.1.1",
-    "react-checkbox-group": "^5.0.2",
-    "react-dom": "^18.2.0",
-    "react-hook-form": "^7.51.1",
-    "react-icons": "^5.0.1",
-    "react-router-dom": "^6.22.3"
->>>>>>> f8e573d07de6b9df2083f12a26e5881a4d00c419
   },
   "devDependencies": {
     "@heroicons/react": "^2.1.1",
     "@types/react": "^18.2.43",
-<<<<<<< HEAD
-=======
-    "@types/react-beautiful-dnd": "^13.1.8",
->>>>>>> f8e573d07de6b9df2083f12a26e5881a4d00c419
     "@types/react-dom": "^18.2.17",
     "@typescript-eslint/eslint-plugin": "^6.14.0",
     "@typescript-eslint/parser": "^6.14.0",
     "@vitejs/plugin-react": "^4.2.1",
     "autoprefixer": "^10.4.18",
-    "envify": "^4.1.0",
     "eslint": "^8.55.0",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.5",
     "postcss": "^8.4.35",
     "tailwindcss": "^3.4.1",
-<<<<<<< HEAD
-    "typescript": "^5.2.2",
-    "vite": "^5.0.8"
-  },
-  "description": "This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.",
-  "main": "postcss.config.js",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/NeUTRAL-CODER-oNE/SportZ-Center.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/NeUTRAL-CODER-oNE/SportZ-Center/issues"
-  },
-  "homepage": "https://github.com/NeUTRAL-CODER-oNE/SportZ-Center#readme"
-=======
-    "terser": "^5.28.1",
     "typescript": "^5.2.2",
     "vite": "^5.0.8"
   }
->>>>>>> f8e573d07de6b9df2083f12a26e5881a4d00c419
 }

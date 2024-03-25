@@ -3,7 +3,6 @@ import { API_ENDPOINT } from "../../config/constants";
 import { SportsAvailableAction } from "../sports/type";
 import { TeamsAvailableAction } from "../teams/type";
 
-
 export const fetchSports = async (dispatch: any) => {
   const token = localStorage.getItem("authToken") ?? "";
 

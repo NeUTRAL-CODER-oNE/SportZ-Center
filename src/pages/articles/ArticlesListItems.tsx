@@ -110,9 +110,7 @@ const ArticleListItem: React.FC = () => {
             <div className="flex-shrink-0">
               <img className="h-12" src={Logo1} alt="Sport" />
             </div>
-            <h1 className="font-bold text-4xl p-2">
-              Sports
-            </h1>
+            <h1 className="font-bold text-4xl p-2">Sports</h1>
           </div>
           <Menu as="div" className="relative inline-block text-left">
             <div>
@@ -212,9 +210,7 @@ const ArticleListItem: React.FC = () => {
           <div className="flex-shrink-0 ">
             <img className="h-12" src={Logo2} alt="Article" />
           </div>
-          <h1 className="font-bold text-4xl p-2">
-            Trending News
-          </h1>
+          <h1 className="font-bold text-4xl p-2">Trending News</h1>
         </div>
 
         {filteredArticlesBySport.length === 0 && selectedSport && (

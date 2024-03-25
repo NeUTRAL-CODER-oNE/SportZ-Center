@@ -18,13 +18,17 @@ const PreferencesDetails: React.FC = () => {
   const sportsState: SportsState = useSportsState();
   const { sports } = sportsState;
 
-  const [userPreferences, setUserPreference] = useState<Preference | null>(() => {
-    const storedPreferences = localStorage.getItem("userPreferences");
-    return storedPreferences ? JSON.parse(storedPreferences) : {
-      sport: { id: 0, name: "" },
-      teams: { id: 0, name: "" },
-    };
-  });
+  const [userPreferences, setUserPreference] = useState<Preference | null>(
+    () => {
+      const storedPreferences = localStorage.getItem("userPreferences");
+      return storedPreferences
+        ? JSON.parse(storedPreferences)
+        : {
+            sport: { id: 0, name: "" },
+            teams: { id: 0, name: "" },
+          };
+    },
+  );
 
   useEffect(() => {
     setOpen(true);

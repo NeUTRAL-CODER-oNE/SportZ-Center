@@ -4,9 +4,7 @@ import { Dialog, Transition } from "@headlessui/react";
 import { ThemeContext } from "../../context/theme";
 import { useNavigate } from "react-router-dom";
 import { TeamsState } from "../../context/teams/type";
-import {
-  useSportsState,
-} from "../../context/sports/context";
+import { useSportsState } from "../../context/sports/context";
 import { SportsState } from "../../context/sports/type";
 import { useTeamsState } from "../../context/teams/context";
 
@@ -19,11 +17,10 @@ const PreferencesDetails: React.FC = () => {
   const sportsState: SportsState = useSportsState();
   const { sports } = sportsState;
 
-
   useEffect(() => {
     setOpen(true);
   }, []);
-  
+
   const closeModal = () => {
     setOpen(false);
     navigate("../..");
