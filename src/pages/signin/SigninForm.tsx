@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useForm, SubmitHandler } from "react-hook-form";
 
@@ -17,6 +17,8 @@ const SigninForm: React.FC = () => {
     handleSubmit,
     formState: { errors },
   } = useForm<Inputs>();
+
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     try {
@@ -38,6 +40,7 @@ const SigninForm: React.FC = () => {
       }
     } catch (error: any) {
       console.error("Sign-in failed:", error);
+      setErrorMessage("Sign-in failed. Please try again.");
     }
   };
 
@@ -96,7 +99,7 @@ const SigninForm: React.FC = () => {
           Create an account
         </Link>
       </p>
-      <p className="mt-5 font-mono">
+      <p className="mt-5 font-mono mb-2">
         <Link
           to="/"
           className="text-blue-500 hover:text-blue-700 font-semibold"
@@ -104,6 +107,10 @@ const SigninForm: React.FC = () => {
           Back to Home
         </Link>
       </p>
+
+      {errorMessage && (
+        <p className="text-red-500 font-semibold font-mono">{errorMessage}</p>
+      )}
     </>
   );
 };

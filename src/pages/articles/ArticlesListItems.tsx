@@ -104,13 +104,13 @@ const ArticleListItem: React.FC = () => {
 
   return (
     <>
-      <div className="max-w-screen-xl mx-auto p-5">
+      <div className="max-w-screen-xl mx-auto p-5 pb-8">
         <div className="flex items-center justify-between mb-2">
           <div className="flex items-center">
             <div className="flex-shrink-0">
               <img className="h-12" src={Logo1} alt="Sport" />
             </div>
-            <h1 className="font-bold text-2xl sm:text-3xl md:text-4xl lg:text-5xl p-2 sm:p-4">
+            <h1 className="font-bold text-4xl p-2">
               Sports
             </h1>
           </div>
@@ -133,7 +133,7 @@ const ArticleListItem: React.FC = () => {
               leaveFrom="transform opacity-100 scale-100"
               leaveTo="transform opacity-0 scale-95"
             >
-              <Menu.Items className="absolute right-0 z-10 mt-2 w-52 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none dark:bg-gray-900">
+              <Menu.Items className="absolute right-0 z-10 mt-2 w-52 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none dark:bg-gray-900 max-h-96 overflow-y-auto">
                 <div className="py-1 font-mono font-bold">
                   {selectedSport
                     ? teams
@@ -159,7 +159,7 @@ const ArticleListItem: React.FC = () => {
                               selectedTeam === team.name
                                 ? "bg-gray-200 text-gray-900 dark:text-zinc-50"
                                 : "text-zinc-500"
-                            } dark:bg-slate-900 dark:hover:bg-slate-800`}
+                            } dark:bg-slate-900 dark:hover:bg-slate-800 hover:bg-gray-200`}
                             onClick={() => handleTeamClick(team.name)}
                           >
                             {team.name}
@@ -212,8 +212,8 @@ const ArticleListItem: React.FC = () => {
           <div className="flex-shrink-0 ">
             <img className="h-12" src={Logo2} alt="Article" />
           </div>
-          <h1 className="font-bold text-2xl sm:text-3xl md:text-4xl lg:text-5xl p-2 sm:p-4">
-            Articles
+          <h1 className="font-bold text-4xl p-2">
+            Trending News
           </h1>
         </div>
 
@@ -233,7 +233,7 @@ const ArticleListItem: React.FC = () => {
           {filteredArticles.map((article: Articles) => (
             <div
               key={article.id}
-              className="relative overflow-hidden rounded-xl duration-300 dark:bg-slate-900 bg-slate-100"
+              className="relative overflow-hidden rounded-xl dark:bg-slate-900 bg-slate-100"
             >
               <div className="image-container">
                 <img

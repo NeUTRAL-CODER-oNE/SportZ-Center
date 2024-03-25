@@ -49,7 +49,7 @@ const ArticlesDetails: React.FC = () => {
       <Transition appear show={isOpen} as={Fragment}>
         <Dialog
           as="div"
-          className="fixed inset-0 z-50 overflow-y-auto flex justify-center"
+          className="fixed inset-0 z-50 overflow-y-auto flex justify-center bg-black bg-opacity-25"
           onClose={closeModal}
         >
           <div className={`flex items-center justify-center max-h-1xl`}>
@@ -63,7 +63,7 @@ const ArticlesDetails: React.FC = () => {
               leaveTo="opacity-0 scale-95"
             >
               <Dialog.Panel
-                className={`m-10 p-8  w-full max-w-4xl rounded-2xl shadow-xl transform overflow-hidden align-middle transition-all ${theme === "dark" ? "bg-gray-900" : "bg-white"}`}
+                className={`m-10 p-8  w-full max-w-3xl rounded-2xl shadow-xl transform overflow-hidden align-middle transition-all ${theme === "dark" ? "bg-gray-900" : "bg-white"}`}
               >
                 <Dialog.Title
                   className={`text-lg font-medium ${theme === "dark" ? "text-white" : "text-gray-900"}`}

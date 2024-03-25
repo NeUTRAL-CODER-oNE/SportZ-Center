@@ -39,7 +39,7 @@ const MatchesListItems: React.FC = () => {
           </div>
         </div>
 
-        <div className="max-w-screen-xl mx-auto p-5">
+        <div className="container mx-auto pt-7 lg:px-2 ">
           <div className="flex gap-2 pb-1 rounded-l-md px-2 ">
             {runningMatches.map((match: Matches) => (
               <div
@@ -51,7 +51,7 @@ const MatchesListItems: React.FC = () => {
                   to={`/match/${match.id}`}
                   className="block"
                 >
-                  <div className="flex-shrink-0 bg-white p-3 rounded-md text-black dark:bg-black dark:text-white border dark:border-white ">
+                  <div className="flex-shrink-0 p-3 rounded-md text-black dark:text-white border dark:border-white dark:bg-slate-900 bg-slate-100">
                     <div>
                       <h2 className="font-mono text-base font-bold my-1">
                         {match.teams.map((team, index) => (
@@ -91,7 +91,7 @@ const MatchesListItems: React.FC = () => {
             {recentMatches.map((match: Matches) => (
               <div
                 key={match.id}
-                className="flex-shrink-0 bg-white p-3 rounded-md text-black dark:bg-black dark:text-white border dark:border-white hover:shadow-2xl "
+                className="flex-shrink-0  p-3 rounded-md text-black dark:text-white border dark:border-white dark:bg-slate-900 hover:shadow-2xl bg-slate-100"
               >
                 <Link
                   key={match.id}
@@ -109,13 +109,13 @@ const MatchesListItems: React.FC = () => {
                         </React.Fragment>
                       ))}
                     </h2>
-                    <div className="flex items-center">
+                    <div className="flex items-center justify-center">
                       <MapPinIcon className="w-4 h-4 text-gray-400 mr-1" />
                       <p className="text-sm text-slate-500">
                         Location: {match.location}
                       </p>
                     </div>
-                    <p className="text-sm text-slate-500">
+                    <p className="text-sm text-slate-500 justify-center">
                       Sport: {match.sportName}
                     </p>
                   </div>

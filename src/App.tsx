@@ -7,6 +7,7 @@ import { ArticlesProvider } from "./context/articles/context";
 import { MatchesProvider } from "./context/matches/context";
 import { SportsProvider } from "./context/sports/context";
 import { TeamsProvider } from "./context/teams/context";
+import { PreferencesProvider } from "./context/preferences/context";
 
 function App() {
   const { theme } = useContext(ThemeContext);
@@ -18,7 +19,9 @@ function App() {
             <MatchesProvider>
               <SportsProvider>
                 <TeamsProvider>
-                  <RouterProvider router={router} />
+                  <PreferencesProvider>
+                    <RouterProvider router={router} />
+                  </PreferencesProvider>
                 </TeamsProvider>
               </SportsProvider>
             </MatchesProvider>

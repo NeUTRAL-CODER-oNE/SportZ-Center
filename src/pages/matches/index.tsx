@@ -16,7 +16,7 @@ const Matches = () => {
     <div className="w-full dark:bg-black">
       <ErrorBoundary>
         <Suspense
-          fallback={<div className="suspense-loading">Loading....</div>}
+          fallback={<div className=" suspense-loading">Loading....</div>}
         >
           <MatchListItems />
         </Suspense>

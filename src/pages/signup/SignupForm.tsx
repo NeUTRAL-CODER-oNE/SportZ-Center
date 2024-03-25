@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import React from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { API_ENDPOINT } from "../../config/constants";
 import { useForm, SubmitHandler } from "react-hook-form";
@@ -19,6 +19,8 @@ const SignupForm: React.FC = () => {
     formState: { errors },
   } = useForm<Inputs>();
 
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+
   const fromSubmit: SubmitHandler<Inputs> = async (data) => {
     try {
       const response = await fetch(`${API_ENDPOINT}/users`, {
@@ -31,15 +33,16 @@ const SignupForm: React.FC = () => {
         throw new Error("Sign-up failed");
       } else {
         console.log("Sign-up successful");
-        const data = await response.json();
+        const responseData = await response.json();
 
-        localStorage.setItem("authToken", data.token);
+        localStorage.setItem("authToken", responseData.token);
         // if successful, save the user info in localStorage
-        localStorage.setItem("userData", JSON.stringify(data.user));
+        localStorage.setItem("userData", JSON.stringify(responseData.user));
         navigate("/");
       }
     } catch (error: any) {
       console.error("Sign-up failed:", error);
+      setErrorMessage("Sign-up failed. Please try again.");
     }
   };
 
@@ -125,7 +128,7 @@ const SignupForm: React.FC = () => {
           Login!
         </Link>
       </p>
-      <p className="mt-5 font-mono">
+      <p className="mt-5 font-mono mb-2">
         <Link
           to="/"
           className="text-blue-500 hover:text-blue-700 font-semibold"
@@ -133,6 +136,10 @@ const SignupForm: React.FC = () => {
           Back to Home
         </Link>
       </p>
+
+      {errorMessage && (
+        <p className="text-red-500 font-semibold font-mono">{errorMessage}</p>
+      )}
     </>
   );
 };

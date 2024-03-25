@@ -6,7 +6,7 @@ import ArticlesDetails from "../pages/articles/ArticlesDetailes";
 import Logout from "../pages/logout";
 import Signin from "../pages/signin";
 import Signup from "../pages/signup";
-// import ProtectedRoute from "./ProtectedRoute";
+import PreferencesDetails from "../pages/preferences/PreferencesDeatils";
 
 const router = createBrowserRouter([
   { path: "*", element: <Navigate to="/" replace /> },
@@ -47,6 +47,16 @@ const router = createBrowserRouter([
           {
             path: ":id",
             element: <ArticlesDetails />,
+          },
+        ],
+      },
+      {
+        path: "user",
+        children: [
+          { index: true, element: <Navigate to="/" replace /> },
+          {
+            path: "preferences",
+            element: <PreferencesDetails />,
           },
         ],
       },

@@ -64,10 +64,10 @@ const MatchDetails: React.FC = () => {
       <Transition appear show={isOpen} as={Fragment}>
         <Dialog
           as="div"
-          className="fixed inset-0 z-50 overflow-y-3xl flex justify-center"
+          className="fixed inset-0 z-50 overflow-y-3xl flex justify-center bg-black bg-opacity-25"
           onClose={closeModal}
         >
-          <div className={`flex items-center justify-center max-h-1xl`}>
+          <div className={`flex items-center justify-center max-h-3xl `}>
             <Transition.Child
               as={Fragment}
               enter="ease-out duration-300"
