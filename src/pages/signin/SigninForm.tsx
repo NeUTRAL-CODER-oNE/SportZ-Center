@@ -2,7 +2,6 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useForm, SubmitHandler } from "react-hook-form";
-
 import { API_ENDPOINT } from "../../config/constants";
 
 type Inputs = {
@@ -33,10 +32,10 @@ const SigninForm: React.FC = () => {
       } else {
         console.log("Sign-in successful");
         const responseData = await response.json();
-
-        localStorage.setItem("authToken", responseData.token);
+        console.log(responseData);
+        localStorage.setItem("authToken", responseData.auth_token);
         localStorage.setItem("userData", JSON.stringify(responseData.user));
-        navigate("/user");
+        navigate("/");
       }
     } catch (error: any) {
       console.error("Sign-in failed:", error);

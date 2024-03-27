@@ -43,8 +43,8 @@ const Appbar = () => {
         }`}
       >
         {({}) => (
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="flex h-16 items-center justify-between">
+          <div className="max-w-screen-1xl mx-auto">
+            <div className="flex h-16 items-center mx-4 justify-between">
               <div className="flex items-center">
                 <div className="flex-shrink-0">
                   <img className="h-6" src={Logo} alt="SportZ-Center" />

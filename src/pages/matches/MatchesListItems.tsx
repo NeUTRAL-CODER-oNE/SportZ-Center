@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useMatchesState } from "../../context/matches/context";
 import { Matches, MatchesState } from "../../context/matches/type";
 import { Link } from "react-router-dom";
@@ -9,6 +9,23 @@ const MatchesListItems: React.FC = () => {
   const state: MatchesState = useMatchesState();
   const { matches, isLoading, isError, errorMessage } = state;
 
+  const [selectedSports, setSelectedSports] = useState<string[]>([]);
+  const [selectedTeams, setSelectedTeams] = useState<string[]>([]);
+
+  useEffect(() => {
+    const userPreference = localStorage.getItem("userData");
+    if (userPreference) {
+      const userData = JSON.parse(userPreference);
+      const { preferences } = userData;
+      if (preferences.sports && preferences.sports.length > 0) {
+        setSelectedSports(preferences.sports);
+      }
+      if (preferences.teams && preferences.teams.length > 0) {
+        setSelectedTeams(preferences.teams);
+      }
+    }
+  }, []);
+
   if (isLoading) {
     return <span>Loading...</span>;
   }
@@ -17,30 +34,38 @@ const MatchesListItems: React.FC = () => {
     return <span>{errorMessage}</span>;
   }
 
-  const runningMatches = matches.filter((match: Matches) => match.isRunning);
-  const recentMatches = matches.filter((match: Matches) => !match.isRunning);
+  let filteredMatches = matches;
+
+  if (selectedSports.length > 0 || selectedTeams.length > 0) {
+    filteredMatches = matches.filter((match: Matches) => {
+      const sportSelected = selectedSports.includes(match.sportName);
+      const teamsSelected = match.teams.some((team) =>
+        selectedTeams.includes(team.name),
+      );
+      return sportSelected || teamsSelected;
+    });
+  }
+
+  const runningMatches = filteredMatches.filter(
+    (match: Matches) => match.isRunning,
+  );
+  const recentMatches = filteredMatches.filter(
+    (match: Matches) => !match.isRunning,
+  );
 
   return (
     <>
-      <div className="max-w-screen-xl mx-auto p-5">
-        <div className="container mx-auto px-2 lg:px-2">
-          <div className="pr-4 flex justify-between items-center">
-            <div className="flex items-center">
-              <div className="flex-shrink-0">
-                <img className="h-12" src={Logo} alt="Live Match" />
-              </div>
-              <h1
-                className="font-bold text-4xl p-2"
-                style={{ fontFamily: "Roboto" }}
-              >
-                Matches
-              </h1>
-            </div>
+      <div className="max-w-screen-1xl mx-auto p-5">
+        <div className="flex items-center mb-2">
+          <div className="flex-shrink-0 ">
+            <img className="h-10" src={Logo} alt="Live Match" />
           </div>
+          <h1 className="font-bold text-4xl p-2 ">Matches</h1>
         </div>
 
-        <div className="container mx-auto pt-7 lg:px-2 ">
-          <div className="flex gap-2 pb-1 rounded-l-md px-2 ">
+        {/* Running Matches */}
+        <div className=" pt-4">
+          <div className="flex gap-2 pb-1 rounded-l-md px-2">
             {runningMatches.map((match: Matches) => (
               <div
                 key={match.id}
@@ -78,20 +103,52 @@ const MatchesListItems: React.FC = () => {
               </div>
             ))}
           </div>
+
+          {runningMatches.length === 0 && (
+            <div className="flex items-center justify-center text-center text-black font-mono font-bold text-xl dark:text-zinc-500 p-5">
+              {selectedTeams.length > 0 && selectedSports.length > 0 ? (
+                <span>
+                  No Live matches available for selected teams:{" "}
+                  <span className="text-red-500">
+                    {selectedTeams.join(", ")}
+                  </span>{" "}
+                  and selected sports:{" "}
+                  <span className="text-red-500">
+                    {selectedSports.join(", ")}
+                  </span>
+                </span>
+              ) : selectedTeams.length > 0 ? (
+                <span>
+                  No Live matches available for selected teams:{" "}
+                  <span className="text-red-500">
+                    {selectedTeams.join(", ")}
+                  </span>
+                </span>
+              ) : selectedSports.length > 0 ? (
+                <span>
+                  No Live matches available for selected sport:{" "}
+                  <span className="text-red-500">
+                    {selectedSports.join(", ")}
+                  </span>
+                </span>
+              ) : (
+                "No matches available"
+              )}
+            </div>
+          )}
         </div>
 
-        <div className="container mx-auto px-2 lg:px-2 mt-4">
-          <div className="pr-4 flex justify-between items-center">
-            <h1 className="font-bold text-xl p-4">Recent Matches</h1>
-          </div>
+        {/* Recent Matches */}
+        <div className="flex items-center mb-2 mx-auto px-2 lg:px-2 mt-4">
+          <h1 className="font-bold text-xl  ">Recent Matches</h1>
         </div>
 
-        <div className="container mx-auto px-2 lg:px-2 overflow-auto">
-          <div className="flex gap-2 pb-1 rounded-l-md px-2 ">
+        <div className=" overflow-auto">
+          <div className="flex gap-2 pb-1 rounded-l-md px-2">
             {recentMatches.map((match: Matches) => (
               <div
                 key={match.id}
-                className="flex-shrink-0  p-3 rounded-md text-black dark:text-white border dark:border-white dark:bg-slate-900 hover:shadow-2xl bg-slate-100"
+                className="flex-shrink-0 p-3 rounded-md text-black dark:text-white border dark:border-white dark:bg-slate-900 hover:shadow-2xl bg-slate-100"
               >
                 <Link
                   key={match.id}
@@ -123,6 +180,39 @@ const MatchesListItems: React.FC = () => {
               </div>
             ))}
           </div>
+
+          {recentMatches.length === 0 && (
+            <div className="flex justify-center text-center text-black font-mono font-bold text-xl dark:text-zinc-500 p-5">
+              {selectedTeams.length > 0 && selectedSports.length > 0 ? (
+                <span>
+                  No matches available for selected teams:{" "}
+                  <span className="text-red-500">
+                    {selectedTeams.join(", ")}
+                  </span>{" "}
+                  and selected sports:{" "}
+                  <span className="text-red-500">
+                    {selectedSports.join(", ")}
+                  </span>
+                </span>
+              ) : selectedTeams.length > 0 ? (
+                <span>
+                  No matches available for selected teams:{" "}
+                  <span className="text-red-500">
+                    {selectedTeams.join(", ")}
+                  </span>
+                </span>
+              ) : selectedSports.length > 0 ? (
+                <span>
+                  No matches available for selected sport:{" "}
+                  <span className="text-red-500">
+                    {selectedSports.join(", ")}
+                  </span>
+                </span>
+              ) : (
+                "No matches available"
+              )}
+            </div>
+          )}
         </div>
       </div>
     </>
