@@ -1,30 +1,32 @@
 # React + TypeScript + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Sports News & Live Scores Dashboard
 
-Currently, two official plugins are available:
+A web application providing sports news articles, live scores, and match details with personalized filtering options.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Website
 
-## Expanding the ESLint configuration
+Visit the [website](https://sportz-center.netlify.app/) to explore the application.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Features
 
-- Configure the top-level `parserOptions` property like this:
+- **Browse Sports News**: View articles with titles, summaries, and thumbnail images. Click to read full content.
+- **Filter News Articles**: Dynamically filter articles by sport without page reload.
+- **View Live Scores**: See ongoing matches, teams playing, current scores, and other details. Refresh manually.
+- **Personalize Dashboard**: Create an account, customize preferences, select favorite sports, and teams for tailored updates.
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: "latest",
-    sourceType: "module",
-    project: ["./tsconfig.json", "./tsconfig.node.json"],
-    tsconfigRootDir: __dirname,
-  },
-};
-```
+## User Interface Requirements
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+- **Landing Screen**: Navigation bar with app name and sign-in/sign-up options. Live scores section shows last five scores. Trending news section has tabs for each sport.
+- **Filter Layout**: Select sport and team within it. Filters display relevant news.
+- **Sign-in/Sign-up Pages**: Accessible from navigation bar. Register, create accounts, or sign in.
+- **Detailed News Article View**: Click "Read More" for detailed view in pop-up/modal.
+- **Preferences Screen**: Accessible as pop-up/modal from landing page. Select preferred sports and teams.
+- **Filtering Based on User Preferences**: Logged-in users see articles filtered based on preferences.
+
+## Setup Instructions
+
+1. Clone the repository.
+2. Install dependencies using `npm install`.
+3. Run application with `npm run dev`.
+
