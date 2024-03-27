@@ -20,10 +20,6 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
   },
-<<<<<<< HEAD
   "include": ["src"],
-=======
-  "include": ["src", "MatchesList.tsx"],
->>>>>>> 19eae117e56d6849f2dc6f5529be71f145f073e7
   "references": [{ "path": "./tsconfig.node.json" }]
 }
