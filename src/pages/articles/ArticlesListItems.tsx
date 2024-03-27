@@ -66,10 +66,10 @@ const ArticleListItem: React.FC = () => {
     if (userPreference) {
       const userData = JSON.parse(userPreference);
       const { preferences } = userData;
-      if (preferences.sports && preferences.sports.length > 0) {
+      if (preferences && preferences.sports && preferences.sports.length > 0) {
         setSelectedSport(preferences.sports);
       }
-      if (preferences.teams && preferences.teams.length > 0) {
+      if (preferences && preferences.teams && preferences.teams.length > 0) {
         setSelectedTeam(preferences.teams);
       }
     }
@@ -156,20 +156,21 @@ const ArticleListItem: React.FC = () => {
                         All Sports
                       </button>
                     </Menu.Item>
-                    {sports.map((sport) => (
-                      <Menu.Item key={sport.id}>
-                        <button
-                          className={`block w-full text-left px-4 py-2 text-sm ${
-                            selectedSport.includes(sport.name)
-                              ? "bg-gray-200 text-gray-900 dark:text-zinc-50"
-                              : "text-zinc-500"
-                          } dark:bg-slate-900 dark:hover:bg-slate-800`}
-                          onClick={() => handleSportClick(sport.name)}
-                        >
-                          {sport.name}
-                        </button>
-                      </Menu.Item>
-                    ))}
+                    {sports &&
+                      sports.map((sport) => (
+                        <Menu.Item key={sport.id}>
+                          <button
+                            className={`block w-full text-left px-4 py-2 text-sm ${
+                              selectedSport.includes(sport.name)
+                                ? "bg-gray-200 text-gray-900 dark:text-zinc-50"
+                                : "text-zinc-500"
+                            } dark:bg-slate-900 dark:hover:bg-slate-800`}
+                            onClick={() => handleSportClick(sport.name)}
+                          >
+                            {sport.name}
+                          </button>
+                        </Menu.Item>
+                      ))}
                   </div>
                 </Menu.Items>
               </Transition>

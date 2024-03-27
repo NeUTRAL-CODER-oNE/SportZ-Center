@@ -1,10 +1,7 @@
 
 node_modules
-<<<<<<< HEAD
 dist
 dist-ssr
-=======
->>>>>>> 19eae117e56d6849f2dc6f5529be71f145f073e7
 *.local
 # Logs
 logs

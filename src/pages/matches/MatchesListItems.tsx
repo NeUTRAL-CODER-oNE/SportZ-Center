@@ -17,10 +17,10 @@ const MatchesListItems: React.FC = () => {
     if (userPreference) {
       const userData = JSON.parse(userPreference);
       const { preferences } = userData;
-      if (preferences.sports && preferences.sports.length > 0) {
+      if (preferences && preferences.sports && preferences.sports.length > 0) {
         setSelectedSports(preferences.sports);
       }
-      if (preferences.teams && preferences.teams.length > 0) {
+      if (preferences && preferences.teams && preferences.teams.length > 0) {
         setSelectedTeams(preferences.teams);
       }
     }
@@ -38,10 +38,11 @@ const MatchesListItems: React.FC = () => {
 
   if (selectedSports.length > 0 || selectedTeams.length > 0) {
     filteredMatches = matches.filter((match: Matches) => {
-      const sportSelected = selectedSports.includes(match.sportName);
-      const teamsSelected = match.teams.some((team) =>
-        selectedTeams.includes(team.name),
-      );
+      const sportSelected =
+        selectedSports.length > 0 && selectedSports.includes(match.sportName);
+      const teamsSelected =
+        selectedTeams.length > 0 &&
+        match.teams.some((team) => selectedTeams.includes(team.name));
       return sportSelected || teamsSelected;
     });
   }
