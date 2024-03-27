@@ -8,7 +8,7 @@ export default defineConfig({
     react(),
     VitePWA({
       devOptions: {
-        enabled: true, // For making sure that the PWA is testable from the Local dev environment
+        enabled: true, 
       },
       registerType: "autoUpdate",
       manifest: {
