@@ -8,7 +8,7 @@ export default defineConfig({
     react(),
     VitePWA({
       devOptions: {
-        enabled: true, 
+        enabled: true,
       },
       registerType: "autoUpdate",
       manifest: {

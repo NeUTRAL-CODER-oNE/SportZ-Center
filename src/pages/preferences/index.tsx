@@ -1,10 +1,8 @@
-
 import React, { Suspense } from "react";
 import ErrorBoundary from "../../components/ErrorBoundary";
 const UserPreferences = React.lazy(() => import("./UserPreferences"));
 
 const Preferences = () => {
-
   return (
     <div className="w-full dark:bg-black">
       <ErrorBoundary>

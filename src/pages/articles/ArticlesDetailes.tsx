@@ -63,10 +63,14 @@ const ArticlesDetails: React.FC = () => {
               leaveTo="opacity-0 scale-95"
             >
               <Dialog.Panel
-                className={`m-10 p-8  w-full max-w-3xl rounded-2xl shadow-xl transform overflow-hidden align-middle transition-all ${theme === "dark" ? "bg-gray-900" : "bg-white"}`}
+                className={`m-10 p-8  w-full max-w-3xl rounded-2xl shadow-xl transform overflow-hidden align-middle transition-all ${
+                  theme === "dark" ? "bg-gray-900" : "bg-white"
+                }`}
               >
                 <Dialog.Title
-                  className={`text-lg font-medium ${theme === "dark" ? "text-white" : "text-gray-900"}`}
+                  className={`text-lg font-medium ${
+                    theme === "dark" ? "text-white" : "text-gray-900"
+                  }`}
                 >
                   Article Details
                 </Dialog.Title>
@@ -81,7 +85,9 @@ const ArticlesDetails: React.FC = () => {
                       />
                       <div className="flex justify-between p-3 items-center mb-2">
                         <p
-                          className={`font-mono font-normal opacity-75 ${theme === "dark" ? "text-zinc-50" : "text-gray-900"}`}
+                          className={`font-mono font-normal opacity-75 ${
+                            theme === "dark" ? "text-zinc-50" : "text-gray-900"
+                          }`}
                         >
                           {selectedArticle.teams?.map(
                             (team: Teams, index: number) =>
@@ -89,7 +95,9 @@ const ArticlesDetails: React.FC = () => {
                           )}
                         </p>
                         <p
-                          className={`font-mono font-normal opacity-75 ${theme === "dark" ? "text-white" : "text-gray-900"}`}
+                          className={`font-mono font-normal opacity-75 ${
+                            theme === "dark" ? "text-white" : "text-gray-900"
+                          }`}
                         >
                           {new Date(selectedArticle.date).toLocaleDateString(
                             "en-US",
@@ -102,7 +110,9 @@ const ArticlesDetails: React.FC = () => {
                         </p>
                       </div>
                       <h2
-                        className={`text-1xl font-bold mb-4 text-center ${theme === "dark" ? "text-white" : "text-gray-900"}`}
+                        className={`text-1xl font-bold mb-4 text-center ${
+                          theme === "dark" ? "text-white" : "text-gray-900"
+                        }`}
                       >
                         {selectedArticle.title}
                       </h2>
@@ -115,7 +125,11 @@ const ArticlesDetails: React.FC = () => {
                         <div className="flex justify-center">
                           <button
                             onClick={closeModal}
-                            className={` text-gray-600 px-4 py-2 ${theme === "dark" ? "bg-gray-800" : "bg-gray-200 hover:bg-gray-400"} rounded-md`}
+                            className={` text-gray-600 px-4 py-2 ${
+                              theme === "dark"
+                                ? "bg-gray-800"
+                                : "bg-gray-200 hover:bg-gray-400"
+                            } rounded-md`}
                           >
                             Close
                           </button>

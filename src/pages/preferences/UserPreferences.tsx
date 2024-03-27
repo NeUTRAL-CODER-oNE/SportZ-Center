@@ -170,16 +170,22 @@ const UserPreferences: React.FC = () => {
               leaveTo="opacity-0 scale-95"
             >
               <Dialog.Panel
-                className={`mx-auto m-auto p-10 w-full max-w-3xl transform overflow-hidden rounded-2xl align-middle shadow-xl transition-all ${theme === "dark" ? "bg-gray-900" : "bg-white"}`}
+                className={`mx-auto m-auto p-10 w-full max-w-3xl transform overflow-hidden rounded-2xl align-middle shadow-xl transition-all ${
+                  theme === "dark" ? "bg-gray-900" : "bg-white"
+                }`}
               >
                 <Dialog.Title
-                  className={`flex justify-center text-2xl font-mono font-bold ${theme === "dark" ? "text-white" : "text-gray-900"}`}
+                  className={`flex justify-center text-2xl font-mono font-bold ${
+                    theme === "dark" ? "text-white" : "text-gray-900"
+                  }`}
                 >
                   Preferences
                 </Dialog.Title>
                 <div>
                   <p
-                    className={`font-mono font-bold ${theme === "dark" ? "text-zinc-200" : "text-gray-700"}`}
+                    className={`font-mono font-bold ${
+                      theme === "dark" ? "text-zinc-200" : "text-gray-700"
+                    }`}
                   >
                     Sports
                   </p>
@@ -209,7 +215,9 @@ const UserPreferences: React.FC = () => {
                 </div>
                 <div>
                   <p
-                    className={`font-mono font-bold ${theme === "dark" ? "text-zinc-200" : "text-gray-700"}`}
+                    className={`font-mono font-bold ${
+                      theme === "dark" ? "text-zinc-200" : "text-gray-700"
+                    }`}
                   >
                     Teams
                   </p>
@@ -240,7 +248,11 @@ const UserPreferences: React.FC = () => {
                 <div className="flex justify-center pt-6">
                   <button
                     onClick={setPreferences}
-                    className={` text-zinc-500 font-mono font-bold px-4 py-2 ${theme === "dark" ? "bg-gray-800  hover:bg-gray-700" : "bg-gray-200 hover:bg-gray-300"} rounded-md`}
+                    className={` text-zinc-500 font-mono font-bold px-4 py-2 ${
+                      theme === "dark"
+                        ? "bg-gray-800  hover:bg-gray-700"
+                        : "bg-gray-200 hover:bg-gray-300"
+                    } rounded-md`}
                   >
                     Apply Preference
                   </button>

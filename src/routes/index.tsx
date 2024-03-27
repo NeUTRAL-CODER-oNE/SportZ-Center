@@ -53,7 +53,6 @@ const router = createBrowserRouter([
       {
         path: "user/preferences",
         element: <Preferences />,
-
       },
     ],
   },

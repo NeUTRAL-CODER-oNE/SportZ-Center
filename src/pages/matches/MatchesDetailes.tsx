@@ -78,10 +78,14 @@ const MatchDetails: React.FC = () => {
               leaveTo="opacity-0 scale-95"
             >
               <Dialog.Panel
-                className={`mx-auto m-auto p-10 w-full max-w-3xl transform overflow-hidden rounded-2xl align-middle shadow-xl transition-all ${theme === "dark" ? "bg-gray-900" : "bg-white"}`}
+                className={`mx-auto m-auto p-10 w-full max-w-3xl transform overflow-hidden rounded-2xl align-middle shadow-xl transition-all ${
+                  theme === "dark" ? "bg-gray-900" : "bg-white"
+                }`}
               >
                 <Dialog.Title
-                  className={`text-lg font-medium ${theme === "dark" ? "text-white" : "text-gray-900"}`}
+                  className={`text-lg font-medium ${
+                    theme === "dark" ? "text-white" : "text-gray-900"
+                  }`}
                 >
                   Match Details
                 </Dialog.Title>
@@ -91,14 +95,18 @@ const MatchDetails: React.FC = () => {
                     <div>
                       <div className="flex justify-center">
                         <p
-                          className={`font-bold  ${theme === "dark" ? "text-zinc-50" : "text-black"}`}
+                          className={`font-bold  ${
+                            theme === "dark" ? "text-zinc-50" : "text-black"
+                          }`}
                         >
                           {selectedMatch.name}
                         </p>
                       </div>
                       <div className="flex justify-between p-4 items-center mb-2">
                         <p
-                          className={`text-l tracking-tight ${theme === "dark" ? "text-zinc-50" : "text-gray-900"}`}
+                          className={`text-l tracking-tight ${
+                            theme === "dark" ? "text-zinc-50" : "text-gray-900"
+                          }`}
                         >
                           {selectedMatch && selectedMatch.score && (
                             <>
@@ -110,7 +118,11 @@ const MatchDetails: React.FC = () => {
                                     <React.Fragment key={index}>
                                       {index > 0 && <span> vs </span>}
                                       <span
-                                        className={`font-bold ${index === 0 ? "text-blue-500" : "text-red-500"}`}
+                                        className={`font-bold ${
+                                          index === 0
+                                            ? "text-blue-500"
+                                            : "text-red-500"
+                                        }`}
                                       >
                                         {teamName}
                                       </span>{" "}
@@ -125,7 +137,11 @@ const MatchDetails: React.FC = () => {
                         {selectedMatch.isRunning && (
                           <button
                             onClick={handleRefresh}
-                            className={`text-gray-600 px-4 py-2 ${theme === "dark" ? "bg-gray-800" : "bg-gray-200 hover:bg-gray-300"} rounded-md`}
+                            className={`text-gray-600 px-4 py-2 ${
+                              theme === "dark"
+                                ? "bg-gray-800"
+                                : "bg-gray-200 hover:bg-gray-300"
+                            } rounded-md`}
                           >
                             Refresh
                           </button>
@@ -152,7 +168,11 @@ const MatchDetails: React.FC = () => {
                         <div className="flex justify-center">
                           <button
                             onClick={closeModal}
-                            className={` text-gray-600 px-4 py-2 ${theme === "dark" ? "bg-gray-800" : "bg-gray-200 hover:bg-gray-300"} rounded-md`}
+                            className={` text-gray-600 px-4 py-2 ${
+                              theme === "dark"
+                                ? "bg-gray-800"
+                                : "bg-gray-200 hover:bg-gray-300"
+                            } rounded-md`}
                           >
                             Close
                           </button>

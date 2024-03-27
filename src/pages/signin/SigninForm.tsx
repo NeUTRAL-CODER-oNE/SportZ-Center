@@ -36,6 +36,7 @@ const SigninForm: React.FC = () => {
         localStorage.setItem("authToken", responseData.auth_token);
         localStorage.setItem("userData", JSON.stringify(responseData.user));
         navigate("/");
+        window.location.reload();
       }
     } catch (error: any) {
       console.error("Sign-in failed:", error);
@@ -59,7 +60,9 @@ const SigninForm: React.FC = () => {
             id="email"
             autoComplete="email"
             placeholder="Enter your email"
-            className={`w-full border font-mono rounded-md py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:border-blue-500 focus:shadow-outline-blue ${errors.email ? "border-red-500" : ""}`}
+            className={`w-full border font-mono rounded-md py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:border-blue-500 focus:shadow-outline-blue ${
+              errors.email ? "border-red-500" : ""
+            }`}
           />
           {errors.email && (
             <p className="text-red-500">{errors.email.message}</p>
@@ -76,7 +79,9 @@ const SigninForm: React.FC = () => {
             id="password"
             autoComplete="password"
             placeholder="Enter your password"
-            className={`w-full border font-mono rounded-md py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:border-blue-500 focus:shadow-outline-blue ${errors.password ? "border-red-500" : ""}`}
+            className={`w-full border font-mono rounded-md py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:border-blue-500 focus:shadow-outline-blue ${
+              errors.password ? "border-red-500" : ""
+            }`}
           />
           {errors.password && (
             <p className="text-red-500">{errors.password.message}</p>

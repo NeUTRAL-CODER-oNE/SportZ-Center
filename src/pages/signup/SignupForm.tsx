@@ -39,6 +39,7 @@ const SignupForm: React.FC = () => {
         // if successful, save the user info in localStorage
         localStorage.setItem("userData", JSON.stringify(responseData.user));
         navigate("/");
+        window.location.reload();
       }
     } catch (error: any) {
       console.error("Sign-up failed:", error);
@@ -62,7 +63,9 @@ const SignupForm: React.FC = () => {
             id="name"
             placeholder="Enter your name"
             autoComplete="name"
-            className={`w-full font-mono border rounded-md py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:border-blue-500 focus:shadow-outline-blue ${errors.name ? "border-red-500" : ""}`}
+            className={`w-full font-mono border rounded-md py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:border-blue-500 focus:shadow-outline-blue ${
+              errors.name ? "border-red-500" : ""
+            }`}
           />
           {errors.name && <p className="text-red-500">Name is required</p>}
         </div>
@@ -79,7 +82,9 @@ const SignupForm: React.FC = () => {
             id="email"
             placeholder="Enter your email"
             autoComplete="email"
-            className={`w-full border font-mono rounded-md py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:border-blue-500 focus:shadow-outline-blue ${errors.email ? "border-red-500" : ""}`}
+            className={`w-full border font-mono rounded-md py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:border-blue-500 focus:shadow-outline-blue ${
+              errors.email ? "border-red-500" : ""
+            }`}
           />
           {errors.email?.type === "required" && (
             <p className="text-red-500">Email is required</p>
@@ -101,7 +106,9 @@ const SignupForm: React.FC = () => {
             id="password"
             placeholder="Enter your password"
             autoComplete="password"
-            className={`w-full border font-mono rounded-md py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:border-blue-500 focus:shadow-outline-blue ${errors.password ? "border-red-500" : ""}`}
+            className={`w-full border font-mono rounded-md py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:border-blue-500 focus:shadow-outline-blue ${
+              errors.password ? "border-red-500" : ""
+            }`}
           />
           {errors.password?.type === "required" && (
             <p className="text-red-500">Password is required</p>
