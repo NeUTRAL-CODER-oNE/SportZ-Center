@@ -56,7 +56,7 @@ const MatchesListItems: React.FC = () => {
 
   return (
     <>
-      <div className="max-w-screen-1xl mx-auto p-5">
+      <div className="max-w-screen-1xl mx-10 p-5">
         <div className="flex items-center mb-2">
           <div className="flex-shrink-0 ">
             <img className="h-10" src={Logo} alt="Live Match" />
