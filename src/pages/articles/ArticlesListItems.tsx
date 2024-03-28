@@ -114,7 +114,7 @@ const ArticleListItem: React.FC = () => {
 
   return (
     <>
-      <div className="max-w-screen-1xl mx-auto p-5">
+      <div className="max-w-screen-1xl mx-10 p-5">
         <div className="flex items-center justify-between mb-2">
           <div className="flex items-center mb-2">
             <div className="flex-shrink-0 ">
@@ -122,7 +122,7 @@ const ArticleListItem: React.FC = () => {
             </div>
             <h1 className="font-bold text-4xl p-2">Trending News</h1>
           </div>
-          <div className="flex items-center space-x-4">
+          <div className="flex items-center space-x-4 mr-2">
             <Menu as="div" className="relative inline-block text-left">
               <div>
                 <Menu.Button className="inline-flex justify-center gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-semibold font-mono text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 dark:bg-slate-900 dark:text-zinc-300">
@@ -175,7 +175,7 @@ const ArticleListItem: React.FC = () => {
                 </Menu.Items>
               </Transition>
             </Menu>
-            <Menu as="div" className="relative inline-block text-left">
+            <Menu as="div" className="relative inline-block text-left ">
               <div>
                 <Menu.Button className="inline-flex justify-center gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-semibold font-mono text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 dark:bg-slate-900 dark:text-zinc-300">
                   Sort By: Team
@@ -266,7 +266,7 @@ const ArticleListItem: React.FC = () => {
               >
                 <div className="image-container">
                   <img
-                    className="w-full h-44 object-cover rounded-lg"
+                    className="w-full h-56 object-cover rounded-lg"
                     src={article.thumbnail}
                     alt={article.title}
                   />

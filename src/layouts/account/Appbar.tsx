@@ -6,13 +6,16 @@ import { UserCircleIcon } from "@heroicons/react/24/outline";
 import Logo from "../../assets/images/SportZ-Center.png";
 import { ThemeContext } from "../../context/theme";
 import { MoonIcon, SunIcon } from "@heroicons/react/20/solid";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const Appbar = () => {
-  // const { pathname } = useLocation();
+  const { pathname } = useLocation();
   const { theme, setTheme } = useContext(ThemeContext);
   const authenticated = !!localStorage.getItem("authToken");
   const [enabled, setEnabled] = useState(false);
+
+  const classNames = (...classes: string[]): string =>
+    classes.filter(Boolean).join(" ");
 
   const toggleTheme = () => {
     let newTheme = "";
@@ -23,16 +26,24 @@ const Appbar = () => {
     }
     setTheme(newTheme);
     setEnabled(!enabled);
+
+    // Store the theme preference in localStorage
+    localStorage.setItem("theme", newTheme);
   };
 
   useEffect(() => {
     setEnabled(theme === "dark");
-  }, [theme]);
 
-  // const navigation = [
-  //   { name: "Projects", href: "/account/projects", current: false },
-  //   { name: "Members", href: "/account/members", current: false },
-  // ];
+    // Retrieve the theme preference from localStorage
+    const storedTheme = localStorage.getItem("theme");
+    if (storedTheme) {
+      setTheme(storedTheme);
+    }
+  }, [setTheme, theme]);
+
+  const navigation = [
+    { name: "News Articles", href: "/news/articles", current: false },
+  ];
 
   return (
     <>
@@ -43,35 +54,40 @@ const Appbar = () => {
         }`}
       >
         {({}) => (
-          <div className="max-w-screen-1xl mx-auto">
+          <div className="max-w-screen-1xl mx-10">
             <div className="flex h-16 items-center mx-4 justify-between">
               <div className="flex items-center">
-                <div className="flex-shrink-0">
-                  <img className="h-6" src={Logo} alt="SportZ-Center" />
-                </div>
-                {/* <div className="hidden md:block">
-                  <div className="ml-10 flex items-baseline space-x-4">
+                <Link to={"/"}>
+                  <div className="flex-shrink-0">
+                    <img className="h-6" src={Logo} alt="SportZ-Center" />
+                  </div>
+                </Link>
+
+                <div className="hidden md:block">
+                  <div className="ml-10 flex items-baseline">
                     {navigation.map((item) => {
                       const isCurrent = pathname.includes(item.href);
 
                       return (
-                        <Link
-                          key={item.name}
-                          to={item.href}
-                          className={classNames(
-                            isCurrent
-                              ? "bg-slate-50 text-blue-700"
-                              : "text-slate-500 hover:text-blue-600",
-                            "rounded-md px-3 py-2 text-sm font-medium",
-                          )}
-                          aria-current={isCurrent ? "page" : undefined}
-                        >
-                          {item.name}
-                        </Link>
+                        <>
+                          <Link
+                            key={item.name}
+                            to={item.href}
+                            className={classNames(
+                              isCurrent
+                                ? "bg-gray-200 text-blue-700  font-bold dark:bg-gray-900"
+                                : " hover:text-blue-600 dark:text-slate-300 text-slate-600 font-bold",
+                              "rounded-md px-3 py-2 text-sm font-medium bg-gray-100  dark:bg-gray-800",
+                            )}
+                            aria-current={isCurrent ? "page" : undefined}
+                          >
+                            {item.name}
+                          </Link>
+                        </>
                       );
                     })}
                   </div>
-                </div> */}
+                </div>
               </div>
               <div className="hidden md:block">
                 <div className="ml-4 flex items-center md:ml-6">

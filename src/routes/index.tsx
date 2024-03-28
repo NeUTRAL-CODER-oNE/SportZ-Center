@@ -7,10 +7,14 @@ import Logout from "../pages/logout";
 import Signin from "../pages/signin";
 import Signup from "../pages/signup";
 import Preferences from "../pages/preferences";
+import News from "../pages/news";
 
 const router = createBrowserRouter([
   { path: "*", element: <Navigate to="/" replace /> },
-
+  {
+    path: "news/articles",
+    element: <News />,
+  },
   {
     path: "/user/sign-in",
     element: <Signin />,
@@ -23,6 +27,7 @@ const router = createBrowserRouter([
     path: "/logout",
     element: <Logout />,
   },
+
   {
     path: "/",
 

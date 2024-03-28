@@ -29,4 +29,3 @@ Visit the [website](https://sportz-center.netlify.app/) to explore the applicati
 1. Clone the repository.
 2. Install dependencies using `npm install`.
 3. Run application with `npm run dev`.
-
